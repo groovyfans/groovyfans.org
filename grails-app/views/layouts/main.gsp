@@ -1,28 +1,64 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-		<g:layoutHead/>
-		<r:layoutResources />
-	</head>
-	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<g:javascript library="application"/>
-		<r:layoutResources />
-	</body>
+<html lang="en">
+<head>
+	<title>GroovyFans - <g:layoutTitle/></title>
+	<g:javascript library="jquery" plugin="jquery"/>
+	<r:require modules="groovyfans"/>
+	<r:layoutResources/>
+</head>
+<body>
+<div id="page" class="container">
+<header>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      	</a>
+        <a class="brand" href="${resource(dir:'/')}">GroovyFans</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav nav-pills">
+            <li class=""><a href="${resource(dir:'/')}">Home</a></li>
+            <li><a href="#">Articles</a></li>
+            <li><a href="${createLink(controller:'project',action:'index')}">Projects</a></li>
+			<li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugins <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="${createLink(controller:'plugin',action:'list')}">All</a></li>
+	            <li><a href="${createLink(controller:'plugin',action:'recent')}">Recent</a></li>
+	            <li><a href="${createLink(controller:'plugin',action:'top',params:[max:30])}">Top 30</a></li>
+	          </ul>
+	        </li>
+            <li><a href="#">Forum</a></li>
+          </ul>
+          <ul class="nav nav-pills pull-right">
+            <li><a href="#"></a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Signin</a></li>
+                <li><a href="#">Signoff</a></li>
+                <li class="divider"></li>
+                <li><a href="about">About GF</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<section id="main">
+	<g:layoutBody/>
+</section>
+<footer>
+<p>&copy 2013 groovyfans.org</p>
+</footer>
+</div>
+<r:layoutResources/>
+</body>
 </html>
