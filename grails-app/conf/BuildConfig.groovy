@@ -52,19 +52,20 @@ grails.project.dependency.resolution = {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.1.6"
-
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
-        //runtime ":cached-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.5"
+        runtime ":zipped-resources:1.0"
+        runtime ":cached-resources:1.0"
+		runtime ":cache-headers:1.1.5"
 
         build ":tomcat:$grailsVersion"
 
         runtime ":database-migration:1.3.2"
 
-        compile ':cache:1.0.1'
-		compile ':cloud-foundry:1.2.3'
+        compile ":cache:1.0.1"
+		compile ":cloud-foundry:1.2.3"
 		compile ":twitter-bootstrap:2.3.2"
 		compile ":font-awesome-resources:3.1"
+		compile ":oauth:2.1.0"
+		compile ":shiro:1.1.4"
+		compile ":shiro-oauth:0.2"
     }
 }
