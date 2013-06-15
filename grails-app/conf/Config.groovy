@@ -43,6 +43,7 @@ grails.converters.encoding = "UTF-8"
 grails.views.gsp.sitemesh.preprocess = true
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
+grails.views.javascript.library="jquery"
 
 // Set to false to use the new Grails 1.2 JSONBuilder in the render method
 grails.json.legacy.builder = false
@@ -68,6 +69,9 @@ environments {
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
+
+grails.plugins.twitterbootstrap.fixtaglib = true
+grails.plugins.twitterbootstrap.defaultBundle = 'bundle_bootstrap'
 
 // log4j configuration
 log4j = {

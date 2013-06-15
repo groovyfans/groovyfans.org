@@ -1,8 +1,17 @@
 dataSource {
     pooled = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+	driverClassName = "com.mysql.jdbc.Driver"
+	username = "rain"
+	password = "rain"
+	properties {
+		maxActive = 50
+		maxIdle = 25
+		minIdle = 5
+		initialSize = 5
+		minEvictableIdleTimeMillis = 60000
+		timeBetweenEvictionRunsMillis = 60000
+		maxWait = 10000
+	}
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -13,20 +22,24 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            dbCreate = "create" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost:3306/groovyfans_dev"
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:mysql://localhost:3306/linkq_test"
         }
     }
     production {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+			dbCreate = "update"
+			url = 'jdbc:mysql://localhost/groovyfans?useUnicode=true&characterEncoding=utf8'
+			dialect = org.hibernate.dialect.MySQLInnoDBDialect
+			driverClassName = 'com.mysql.jdbc.Driver'
+			username = 'gf'
+			password = "gf"
             pooled = true
             properties {
                maxActive = -1
