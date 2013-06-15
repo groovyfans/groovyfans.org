@@ -31,17 +31,21 @@ grails.project.dependency.resolution = {
         mavenLocal()
         mavenCentral()
 
+		mavenRepo "http://maven.springframework.org/milestone/"
+
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+		mavenRepo "http://maven.springframework.org/milestone/"
     }
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
-        // runtime 'mysql:mysql-connector-java:5.1.22'
+        runtime 'mysql:mysql-connector-java:5.1.22'
+		runtime 'org.apache.ivy:ivy:2.2.0'
     }
 
     plugins {
@@ -59,5 +63,8 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.3.2"
 
         compile ':cache:1.0.1'
+		compile ':cloud-foundry:1.2.3'
+		compile ":twitter-bootstrap:2.3.2"
+		compile ":font-awesome-resources:3.1"
     }
 }
