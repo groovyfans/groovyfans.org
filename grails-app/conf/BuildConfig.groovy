@@ -64,8 +64,7 @@ grails.project.dependency.resolution = {
 		compile ":cloud-foundry:1.2.3"
 		compile ":twitter-bootstrap:2.3.2"
 		compile ":font-awesome-resources:3.1"
-		compile ":oauth:2.1.0"
 		compile ":shiro:1.1.4"
-		compile ":shiro-oauth:0.2"
+		compile ":avatar:0.6.3"
     }
 }
