@@ -1,4 +1,4 @@
-package org.groovyfans.security
+package org.groovyfans.auth
 
 import org.springframework.dao.DataIntegrityViolationException
 

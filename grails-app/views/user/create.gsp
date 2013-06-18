@@ -1,4 +1,4 @@
-<%@ page import="org.groovyfans.security.User" %>
+<%@ page import="org.groovyfans.auth.User" %>
 <!DOCTYPE html>
 <html>
 	<head>

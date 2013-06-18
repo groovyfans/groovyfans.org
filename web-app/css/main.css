@@ -2,11 +2,21 @@ body {
 	padding-top: 40px;
 }
 
+#main {
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
 .projects{
 	width: 90%;
 	margin: 0 auto;
 	padding-top: 20px;
 }
+
+footer {
+	text-align: center;
+}
+
 /* Github Box */
 
 .github-box-wrap {
