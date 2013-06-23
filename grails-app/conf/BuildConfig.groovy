@@ -51,7 +51,7 @@ grails.project.dependency.resolution = {
     plugins {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
-        runtime ":resources:1.1.6"
+        runtime ":resources:1.2"
         runtime ":zipped-resources:1.0"
         runtime ":cached-resources:1.0"
 		runtime ":cache-headers:1.1.5"
@@ -63,7 +63,9 @@ grails.project.dependency.resolution = {
         compile ":cache:1.0.1"
 		compile ":cloud-foundry:1.2.3"
 		compile ":twitter-bootstrap:2.3.2"
-		compile ":font-awesome-resources:3.1"
+		compile (":font-awesome-resources:3.2.1") {
+			excludes "resources"
+		}
 		compile ":shiro:1.1.4"
 		compile ":avatar:0.6.3"
     }
