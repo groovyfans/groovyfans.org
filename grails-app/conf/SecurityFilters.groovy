@@ -3,14 +3,69 @@
  * via access control by convention.
  */
 class SecurityFilters {
-    def filters = {
-        all(uri: "/**") {
-            before = {
-                // Ignore direct views (e.g. the default main index page).
-                if (!controllerName) return true
+    /**
+     * Called when an unauthenticated user tries to access a secured
+     * page.
+     */
+    def onNotAuthenticated(subject, d) {
+        def targetUri = d.request.forwardURI 
+        if (d.request.queryString) {
+            targetUri = "${targetUri}?${d.request.queryString}"
+        }
 
-                // Access control by convention.
-                accessControl()
+        if (d.request.xhr) {
+            d.render(template:"/user/loginForm", model:[targetUri:targetUri,
+                                                        formData:d.params,
+                                                        async:true,
+                                                        update:d.params._ul,
+                                                        message:"auth.not.logged.in"])
+        } else if(d.response.format == 'text') {
+            d.render status:401, text:"Permission Denied"
+        
+        }else {
+            // Redirect to login page.
+            d.session["targetUri"] = targetUri 
+            d.redirect(
+                    controller: 'user',
+                    action: 'login',
+                    params:[targetUri: targetUri])
+        }
+
+        // Don't execute the default behaviour.
+        return false
+    }    
+
+    /**
+     * Called when an authenticated user tries to access a page that they don't
+     * have the rights for.
+     */
+    def onUnauthorized(subject, d) {
+        if (d.request.xhr) {
+            d.render "You do not have permission to access this page."
+        } else if (d.response.format == 'text') {
+            d.render status: 403, text: "Permission denied"
+        } else {
+            // Redirect to the 'unauthorized' page.
+            d.redirect controller: 'user', action: 'unauthorized'
+        }
+    }
+
+    def filters = {
+        def requiresPermissions = [
+                plugin: ["init"]
+        ]
+        withPermissions(controller: "*", action: "*") {
+            before = {
+				if (!controllerName) return true
+
+                if (actionName in requiresPermissions[controllerName]) {
+                    accessControl {
+						role("Administrator")
+					}
+                }
+                else {
+                    return true
+                }
             }
         }
     }
