@@ -60,6 +60,35 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+grails.cache.config = {
+    cache {
+        name 'plugins'
+        eternal false
+        overflowToDisk true
+        timeToLiveSeconds 300
+        maxElementsInMemory 10000
+        maxElementsOnDisk 100000
+    }
+}
+
+grails.app.context = '/'
+
+oauth {
+    providers {
+        google {
+            api = org.scribe.builder.api.GoogleApi
+            key = '326663650518-9csio6hfeft9ull8in2qpfh4bebu8p1c.apps.googleusercontent.com'
+            secret = 'dmQzLbBgcycr4P5XqhrmQo8l'
+            //callback = "${grails.serverURL}/oauth/callback?provider=google"
+			callback = "http://localhost:8080/oauth/google/callback"
+            successUri = '/oauth/success?provider=google'
+            failureUri = '/unauthorized'
+			scope = 'https://www.googleapis.com/auth/userinfo.email'
+        }
+    }
+    debug = true
+}
+
 environments {
     development {
         grails.logging.jul.usebridge = true
