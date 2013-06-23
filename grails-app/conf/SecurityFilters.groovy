@@ -26,7 +26,7 @@ class SecurityFilters {
             // Redirect to login page.
             d.session["targetUri"] = targetUri 
             d.redirect(
-                    controller: 'user',
+                    controller: 'auth',
                     action: 'login',
                     params:[targetUri: targetUri])
         }
@@ -46,7 +46,7 @@ class SecurityFilters {
             d.render status: 403, text: "Permission denied"
         } else {
             // Redirect to the 'unauthorized' page.
-            d.redirect controller: 'user', action: 'unauthorized'
+            d.redirect controller: 'auth', action: 'unauthorized'
         }
     }
 
